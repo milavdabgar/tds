@@ -1,16 +1,13 @@
 from fastapi import FastAPI, Query
 from typing import List
+import json
 
 app = FastAPI()
 
-# Student marks data
-STUDENT_MARKS = {
-    "1": 77,
-    "2": 14,
-    "3": 81,
-    "4": 11,
-    "5": 62
-}
+# Load student marks data from JSON file
+with open('q-vercel-python.json', 'r') as f:
+    marks_data = json.load(f)
+    STUDENT_MARKS = {student['name']: student['marks'] for student in marks_data}
 
 @app.get("/")
 async def root():
