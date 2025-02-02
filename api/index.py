@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import pandas as pd
+from typing import List
 
 app = FastAPI()
 
@@ -13,11 +13,17 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# Load the student marks data
-df = pd.read_csv('marks.csv')
+# Student marks data
+STUDENT_MARKS = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "David": 95,
+    "Eve": 88
+}
 
 @app.get("/api")
-async def get_marks(name: list[str]):
+async def get_marks(name: List[str]):
     # Get marks for the requested names
-    marks = [int(df[df['name'] == n]['marks'].iloc[0]) if len(df[df['name'] == n]) > 0 else None for n in name]
+    marks = [STUDENT_MARKS.get(n) for n in name]
     return {"marks": marks}
