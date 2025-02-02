@@ -1,0 +1,32 @@
+name: Test Workflow
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: 21f1005510@ds.study.iitm.ac.in
+        run: echo "Running test workflow"
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Test FastAPI endpoint
+        run: |
+          pip install httpx pytest
+          python -c "import httpx; print(httpx.get('https://tds-bf9rzycyt-milav-dabgars-projects.vercel.app/api?name=0&name=KJ52hAe').json())"
