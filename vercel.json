@@ -6,13 +6,7 @@
         "config": { "runtime": "python3.9" }
     }],
     "routes": [{
-        "src": "/api",
+        "src": "/(.*)",
         "dest": "api/index.py"
-    }],
-    "functions": {
-        "api/index.py": {
-            "memory": 1024,
-            "maxDuration": 10
-        }
-    }
+    }]
 }
