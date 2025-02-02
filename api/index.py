@@ -5,11 +5,11 @@ app = FastAPI()
 
 # Student marks data
 STUDENT_MARKS = {
-    "Alice": 85,
-    "Bob": 92,
-    "Charlie": 78,
-    "David": 95,
-    "Eve": 88
+    "1": 77,
+    "2": 14,
+    "3": 81,
+    "4": 11,
+    "5": 62
 }
 
 @app.get("/")
